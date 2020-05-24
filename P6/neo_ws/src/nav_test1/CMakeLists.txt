@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(nav_test)
+project(nav_test1)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -207,5 +207,5 @@ include_directories(
 # catkin_add_nosetests(test)
 #
 catkin_package()
-add_executable(nav_test src/main.cpp)
-target_link_libraries(nav_test ${catkin_LIBRARIES})
+add_executable(nav_test1 src/main.cpp)
+target_link_libraries(nav_test1 ${catkin_LIBRARIES})
