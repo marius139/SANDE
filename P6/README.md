@@ -1,6 +1,6 @@
 #### Table of contents
 - [Prerequisites](#Prerequisites)
-- rqt_graph
+- rqt_graph(#rqt_graph)
 - [Simulation of Navigation Stack (Navigation)](#Simulation-of-navigation-stack-navigation)
 - [Simulation of Navigation Stack (SLAM)](#Simulation-of-navigation-stack-SLAM)
 - [Plugin](#Plugin)
