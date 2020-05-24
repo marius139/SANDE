@@ -1,5 +1,6 @@
 #### Table of contents
 - [Prerequisites](#Prerequisites)
+- rqt_graph
 - [Simulation of Navigation Stack (Navigation)](#Simulation-of-navigation-stack-navigation)
 - [Simulation of Navigation Stack (SLAM)](#Simulation-of-navigation-stack-SLAM)
 - [Plugin](#Plugin)
@@ -17,7 +18,6 @@
 
 ## rqt_graph
 The following figure will show the rqt_graph connected to the developed navigation stack (neo_ws).
-
 ![picture](images/navigationStack_rqtFull.png)
 
 <br>
