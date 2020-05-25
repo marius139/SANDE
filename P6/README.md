@@ -1,5 +1,6 @@
 #### Table of contents
 - [Prerequisites](#Prerequisites)
+- [rqt_graph](#rqt_graph)
 - [Simulation of Navigation Stack (Navigation)](#Simulation-of-navigation-stack-navigation)
 - [Simulation of Navigation Stack (SLAM)](#Simulation-of-navigation-stack-SLAM)
 - [Plugin](#Plugin)
@@ -15,11 +16,18 @@
 
 <br>
 
+## rqt_graph
+The following figure will show the rqt_graph connected to the developed navigation stack (neo_ws).
+![picture](images/navigationStack_rqtFull.png)
+
+<br>
+
+
 ## Simulation of Navigation Stack (Navigation)
 
 - Launch Gazebo with loaded robot model and world.
 ```c
-roslaunch neo_gazebo {launch_file_name}
+roslaunch neo_simulations {launch_file_name}
 ```
 
 - Launch Navigation Stack 
@@ -31,7 +39,7 @@ roslaunch neo_gazebo {launch_file_name}
 ## Simulation of Navigation Stack (SLAM)
 - Launch Gazebo with loaded robot model and world.
 ```c
-roslaunch neo_gazebo {launch_file_name}
+roslaunch neo_simulations {launch_file_name}
 ```
 
 - Launch SLAM
