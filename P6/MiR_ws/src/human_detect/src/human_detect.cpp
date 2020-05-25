@@ -225,6 +225,7 @@ int main(int argc, char** argv){
     mapPos = calTransform();
     sendPeople(mapPos, 1, pubCV);
     ros::spinOnce();
+    ROS_INFO("Running...");
   }
 
 }
