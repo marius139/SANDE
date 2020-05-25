@@ -273,85 +273,11 @@ void planeSegment(){
          exit(2);
      }
   }
-  
+
   }
 
 }
-//Recieve RGB images from realsense
-void imageCallback(const sensor_msgs::ImageConstPtr msg){
-  try
-  {
-    cv_ptr = cv_bridge::toCvCopy(*msg, sensor_msgs::image_encodings::BGR8);
-  }
-  catch (cv_bridge::Exception& e)
-  {
-    ROS_ERROR("cv_bridge exception: %s", e.what());
-    return;
-  }
-}
-//Recieve depth images from realsense camera
-void depthCallback(const sensor_msgs::ImageConstPtr msg){
-  try
-  {
-    cv_ptrDep = cv_bridge::toCvCopy(*msg, sensor_msgs::image_encodings::TYPE_16UC1);
-  }
-  catch (cv_bridge::Exception& e)
-  {
-    ROS_ERROR("cv_bridge exception: %s", e.what());
-    return;
-  }
-}
-//Get image as cv mat
-cv::Mat getImage() {
-  cv::Mat img = cv::Mat(100,100, CV_8UC3); //RGB
-  ros::Time tid = ros::Time::now()+ros::Duration(5.0);
-  while (ros::ok()) {
-    if(ros::Time::now()>tid){
-      ROS_INFO("Did not get image. Abandonning");
-      return img;
-    }
-    ros::spinOnce();
-    if(cv_ptr){
-      img = cv::Mat(cv_ptr->image.rows, cv_ptr->image.cols, CV_8UC3);
-      img = cv_ptr->image;
-      cv_ptr.reset();
-      return img;
-    }
-  }
-  return img;
-}
-//Get depth image as cv Mat
-cv::Mat getDepthImage() {
-  cv::Mat imgD = cv::Mat(100,100, CV_16UC1); //Depth
-  ros::Time tidD = ros::Time::now()+ros::Duration(5.0);
-  while (ros::ok()) {
-    if(ros::Time::now()>tidD){
-      ROS_INFO("Did not get image. Abandonning");
-      return imgD;
-    }
-    ros::spinOnce();
-    if(cv_ptrDep){
-      imgD = cv::Mat(cv_ptrDep->image.rows, cv_ptrDep->image.cols, CV_16UC1);
-      imgD = cv_ptrDep->image;
-      cv_ptrDep.reset();
-      return imgD;
-    }
-  }
-  return imgD;
-}
-//Callback for current robot position
-void moveBaseCallback(const geometry_msgs::PoseWithCovarianceStamped msg){
-  tfScalar yaw,pitch,roll;
-  curXpose = msg.pose.pose.position.x;
-  curYpose = msg.pose.pose.position.y;
 
-  tf::Quaternion quat;
-  quat = tf::Quaternion(msg.pose.pose.orientation.x,msg.pose.pose.orientation.y,msg.pose.pose.orientation.z,msg.pose.pose.orientation.w);
-  tf::Matrix3x3 mat(quat);
-  mat.getEulerYPR(yaw,pitch,roll);
-  ROS_INFO("yaw: %f, pitch: %f, roll: %f", yaw,pitch,roll);
-  curAngle = yaw;
-}
 //Detect humans with hog
 void hogDetect(){
 
@@ -392,7 +318,7 @@ void hogDetect(){
          //cv::resize(currentImg, img, cv::Size(960,1280));
          //img = currentImg;
 
-         
+
          /// groupThreshold (set groupThreshold to 0 to turn off the grouping completely).
 
          startTime = ros::Time::now();
@@ -411,7 +337,7 @@ void hogDetect(){
          {
              Rect r = found[z];
              rectangle(img, found[z], cv::Scalar(0,0,255), 3);
-           
+
          }
 
          dur = ros::Time::now() - startTime;
@@ -437,45 +363,6 @@ void hogDetect(){
      }
 
 
-}
-
-//People message for navigation layers
-void sendPeople(double x, double y, int PersonID, ros::Publisher pub){
-
-  people_msgs::People peopleMsg;
-
-  sequenceID++;
-  peopleMsg.header.seq = sequenceID;
-  peopleMsg.header.frame_id = "map";
-  peopleMsg.header.stamp = ros::Time::now();
-
-  peopleMsg.people[PersonID].name = "person1";
-
-  peopleMsg.people[PersonID].position.x = x;
-  peopleMsg.people[PersonID].position.y = y;
-  peopleMsg.people[PersonID].position.z = 0;
-
-  peopleMsg.people[PersonID].velocity.x = 0;
-  peopleMsg.people[PersonID].velocity.y = 0;
-  peopleMsg.people[PersonID].velocity.z = 0;
-
-  peopleMsg.people[PersonID].reliability = 1;
-
-  peopleMsg.people[PersonID].tagnames[0] = "person";
-  peopleMsg.people[PersonID].tags[0] = "person";
-
-  pub.publish(peopleMsg);
-
-}
-//Transform detected human to world cordinates
-std::vector<float> calTransform(int x, int y, float depthToPoint){
-
-  //apply transform from camera to person, return position of person on global map. To be completed and calibrated with acces to robot
-
-  std::vector<float> positionGlobalMap;
-  positionGlobalMap.push_back(0);
-  positionGlobalMap.push_back(0);
-  return positionGlobalMap;
 }
 
 int main(int argc, char** argv){

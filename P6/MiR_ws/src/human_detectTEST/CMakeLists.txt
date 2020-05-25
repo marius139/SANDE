@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(human_detect)
+project(human_detectTEST)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -147,9 +147,9 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 
 find_package(OpenCV 3 REQUIRED)
-add_executable(human_detect src/human_detect.cpp)
-target_link_libraries(human_detect ${catkin_LIBRARIES})
-target_link_libraries(human_detect ${OpenCV_LIBS})
+add_executable(human_detectTEST src/human_detectTEST.cpp)
+target_link_libraries(human_detectTEST ${catkin_LIBRARIES})
+target_link_libraries(human_detectTEST ${OpenCV_LIBS})
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
