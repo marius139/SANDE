@@ -1,4 +1,5 @@
 #### Table of contents
+- [Project report](#Project-report)
 - [Prerequisites](#Prerequisites)
 - [rqt_graph](#rqt_graph)
 - [Simulation of Navigation Stack (Navigation)](#Simulation-of-navigation-stack-navigation)
@@ -7,6 +8,10 @@
 - [Installation of Gazebo 13](#Installation-of-Gazebo-13)
 - [Important information](#Important-information)
 - [Troubleshooting](#Troubleshooting)
+
+<br>
+
+## [Project report](https://drive.google.com/file/d/1qS7mhCOEqVYUB9yGutPqKcVzuX8ee-Oz/view?usp=sharing)
 
 <br>
 
